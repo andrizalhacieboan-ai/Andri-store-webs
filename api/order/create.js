@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     if (!calc) return res.status(400).json({ success: false, message: "Paket tidak dikenal" });
 
     const payment = await createPayment(calc.total);
-    saveOrder(payment.orderId, {
+   await saveOrder(payment.orderId, {
       ramKey, username: uname, months: calc.months, amount: calc.total,
       status: "pending",
       password: generatePassword(),
