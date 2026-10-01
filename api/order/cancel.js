@@ -3,7 +3,7 @@ import { getOrder, updateOrder } from "../_lib/store.js";
 
 export default async function handler(req, res) {
   const { orderId } = req.body || {};
-  const order = getOrder(orderId);
+  const order = await getOrder(orderId);
   if (!order) return res.status(404).json({ success: false, message: "Order tidak ditemukan" });
   if (order.status === "done") return res.status(400).json({ success: false, message: "Order sudah lunas & panel sudah dibuat" });
   try {
