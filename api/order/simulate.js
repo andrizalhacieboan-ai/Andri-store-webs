@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(403).json({ success: false, message: "Simulasi dinonaktifkan" });
   }
   const { orderId } = req.body || {};
-  const order = getOrder(orderId);
+  const order = await getOrder(orderId);
   if (!order) return res.status(404).json({ success: false, message: "Order tidak ditemukan" });
   try {
     const result = await simulatePayment(orderId, order.amount);
