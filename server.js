@@ -56,7 +56,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Terjadi kesalahan server' });
 });
 
-const PORT = process.env.PORT || 3000; // Passenger mengisi PORT otomatis
+const PORT = process.env.PORT || 3000; 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 ANDRI STORE API berjalan di port ${PORT}`);
   console.log('   Login : POST /api/auth/login');
