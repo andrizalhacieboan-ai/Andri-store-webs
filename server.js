@@ -1,5 +1,4 @@
-// Entry point untuk cPanel (Phusion Passenger) & development lokal.
-// Vercel TIDAK memakai file ini — di sana api/ otomatis jadi serverless functions.
+
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
@@ -22,9 +21,6 @@ const app = express();
 app.disable('x-powered-by');
 app.use(express.json());
 
-// Mount SEMUA file di api/ — meniru routing otomatis Vercel:
-// api/auth/login.js → /api/auth/login, api/order/create.js → /api/order/create, dst.
-// Folder/file berawalan "_" (mis. _lib) dilewati karena bukan endpoint.
 const wrap = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
 async function mountApi(dir, base) {
